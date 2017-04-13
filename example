@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <string>
+#include <algorithm>
+#include <iterator>
+#include <map>
+#include <fstream>
+#include <vector>
+using namespace std;
+map<char,int> m;
+int main()
+{
+    //freopen("ok.txt","r",stdin);
+
+        vector<char> s;
+        char c;
+    while(!cin.eof()){
+
+        while(1){
+            c = cin.get();
+            if(c==' ')break;
+            s.push_back(c);
+        }
+        vector<char> ss;
+        while(1){
+            c = cin.get();
+            if(c=='\n')break;
+            ss.push_back(c);
+        }
+        int i=0;
+        while(s[i]){
+            s[i]=toupper(s[i]);
+            i++;
+        }
+        i=0;
+        while(ss[i]){
+            ss[i]=toupper(ss[i]);
+            i++;
+        }
+        i=0;
+        while(s[i]){
+            m[s[i]]++;
+            i++;
+        }
+        for(map<char,int>::iterator j=m.begin(); j!=m.end(); j++){
+            cout << j->second << " ";
+        }
+        cout << endl;
+        int k[10] = {0};
+        int k1=0;
+        i=0;
+        while(s[i]){
+            if(ss[0] == s[i] && ss[1] == s[i+1]){
+                k[k1] = i;
+                k1++;
+            }
+            i++;
+        }
+        i=0;
+        for(int i=0;i<k1;i++){
+            cout << k[i] << " ";
+        }
+        cout << k1 << endl;
+        s.clear();
+        ss.clear();
+        m.clear();
+    }
+    return 0;
+}
