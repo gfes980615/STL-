@@ -1,0 +1,63 @@
+#include <iostream>
+#include <ctime>
+#include <random>
+#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    fstream file;
+    srand(time(NULL));
+    mt19937 mt(time(NULL));
+    uniform_int_distribution<int> dis(0, 9);
+    uniform_int_distribution<int> dis2(0, 25);
+    uniform_int_distribution<int> dis3(0, 1000);
+    uniform_int_distribution<int> dis4(1, 10);
+    uniform_int_distribution<int> dis5(10, 20);
+    string filename = "data.txt";
+    file.open(filename, ios::out);
+    int m;
+    m= dis4(mt);
+    while(m--){
+        //printf("%d\n",m+1);
+        file << m+1 << endl;
+        //cout << endl;
+        file << endl;
+        int k;
+        k = dis5(mt);
+        //printf("%d\n",k);
+        file << k << endl;
+        while(k--){
+            for(int i=0;i<7;i++){
+                if(rand()%2){
+                    //printf("%d" ,dis(mt));
+                    file << dis(mt);
+                }
+                else {
+                    char c;
+                    c = 'A'+dis2(mt);
+                    if(c != 'Q' || c != 'Z'){
+                        //printf("%c",c);
+                        file << c;
+                    }
+                    else {
+                       // printf("%c",c - dis(mt));
+                       file << c -dis(mt);
+                    }
+                }
+                if(dis3(mt)% 2);
+                else{
+                   // printf("-");
+                   file << "-";
+                }
+            }
+            file << endl;
+        }
+    }
+    file << endl;
+    file.close();
+    return 0;
+}
